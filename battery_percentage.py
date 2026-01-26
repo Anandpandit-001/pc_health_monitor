@@ -11,8 +11,7 @@ def battery_percentage_anim():
         battery_level = battery.percent
         values = [battery_level, 100 - battery_level]
 
-        ax.clear()
-        wedges, texts, autotexts = ax.pie(
+        ax.clear()        wedges, texts, autotexts = ax.pie(
             values,
             colors=colors1,
             startangle=90,

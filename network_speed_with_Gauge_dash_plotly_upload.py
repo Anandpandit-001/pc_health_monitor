@@ -37,7 +37,7 @@ def network_upload_speed_app():
 
             value=ds,
             domain={'x': [0, 1], 'y': [0.15, 1]},
-            title={'text': "Download Speed (kB/s)",
+            title={'text': "Upload Speed (kB/s)",
                         'font': {'size': 20},
                         'align': 'center'},
             gauge={

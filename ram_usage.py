@@ -32,7 +32,7 @@ def ram_usage_anim():
 
         plt.tight_layout()
 
-    ani = FuncAnimation(fig, animate, interval=1000)
+    ani = FuncAnimation(fig, animate, interval=1000,cache_frame_data=False)
 
     return fig, ani
 
