@@ -48,6 +48,7 @@ def ram_usage():
 
         fig.update_layout(
             plot_bgcolor='#0e1117',
+            height=320,
             paper_bgcolor='#0e1117',
             font_color='white',
             title_x=0.5,

@@ -18,10 +18,30 @@ def disk_space_plotly():
     @app.callback(Output("graph", "figure"),
                   Input("interval-component", "n_intervals"))
     def generate_chart(n):
+        def get_total_storage():
+            total_capacity = 0
+            # partitions = [p for p in psutil.disk_partitions() if 'fixed' in p.opts] # Linux/Mac
+            partitions = psutil.disk_partitions()  # Windows
+
+            for partition in partitions:
+                # Skip CD-ROMs or empty drives
+                if 'cdrom' in partition.opts or partition.fstype == '':
+                    continue
+
+                try:
+                    usage = psutil.disk_usage(partition.mountpoint)
+                    total_capacity += usage.total
+                except PermissionError:
+                    # System partitions might throw errors, just skip them
+                    continue
+
+            # Convert Bytes to GB and round
+            return round(total_capacity / (1024 ** 3), 2)
+
+        real_total = get_total_storage()
         usage = psutil.disk_usage('/')
         used_percent = usage.percent
-        total_gb = round(usage.total / (1024 ** 3), 2)
-        used_gb = usage.used / (1024 ** 3)
+
 
         fig = px.pie(
             values=[used_percent, 100 - used_percent],
@@ -41,7 +61,7 @@ def disk_space_plotly():
 
         fig.update_layout(
             title=dict(
-                text=f"Disk Usage<br><span style='font-size: 14px; color: #aaaaaa'>Total Capacity: {total_gb} GB</span>",
+                text=f"Disk Usage<br><span style='font-size: 14px; color: #aaaaaa'>Total Capacity: {real_total} GB</span>",
                 y=0.85,  # Positions title slightly lower from the very top edge
                 x=0.5,  # Centers the title horizontally
                 xanchor='center',
