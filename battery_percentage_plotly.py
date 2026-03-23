@@ -29,10 +29,10 @@ def battery_percentage_plotly():
 
         fig.update_traces(
             textinfo="none",
-            hoverinfo="none",  # Disables the hover tooltip for a cleaner "gauge" feel
-            hole=0.7,  # Makes the ring thinner and more modern
+            hoverinfo="none",  
+            hole=0.7,  
             marker=dict(
-                colors=["#00cc00", "#1a1a1a"],  # Uses a sharper green and dark grey
+                colors=["#00cc00", "#1a1a1a"],  
                 line=dict(width=0)
             )
         )
@@ -40,17 +40,17 @@ def battery_percentage_plotly():
         fig.update_layout(
             title=dict(
                 text="Battery Percentage",
-                y=0.80,  # Positions title slightly lower from the very top edge
-                x=0.5,  # Centers the title horizontally
+                y=0.80, 
+                x=0.5, 
                 xanchor='center',
                 yanchor='top'
             ),
             showlegend=False,
 
-            # FIX: Increase top margin to 40 or 50 to give the title room
+           
             margin=dict(t=80, b=20, l=20, r=20),
 
-            # FIX: Set a fixed height so it acts like a widget, not a full-page plot
+            
             height=300,
 
             plot_bgcolor="#0e1117",
@@ -61,8 +61,8 @@ def battery_percentage_plotly():
                 text=f"{battery_level}%",
                 x=0.5,
                 y=0.5,
-                font_size=28,  # Slightly larger text for readability
-                font_weight="bold",  # Makes the number pop
+                font_size=28, 
+                font_weight="bold",  
                 showarrow=False
             )]
         )
