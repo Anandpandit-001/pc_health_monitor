@@ -17,18 +17,22 @@ def run_app2():
     app2 = network_download_speed_app()
     app2.run(port=8051, debug=False, use_reloader=False)
 
+# Define App 3
 def run_app3():
     app3 = cpu_usage()
     app3.run(port=8052, debug=False, use_reloader=False)
 
+# Define App 4
 def run_app4():
     app4 = ram_usage()
     app4.run(port=8053, debug=False, use_reloader=False)
 
+# Define App 5
 def run_app5():
     app5 = battery_percentage_plotly()
     app5.run(port=8054, debug=False, use_reloader=False)
 
+# Define App 6
 def run_app6():
     app6 = disk_space_plotly()
     app6.run(port=8055, debug=False, use_reloader=False)
@@ -38,13 +42,8 @@ row2_col0 , row2_col1, row2_col2 = st.columns([1,3,1])
 
 with row2_col2:
     with st.container():
-        # 1. Reduce height to match the actual content
-        # If your Gauge is square, 350-450 is usually perfect.
         st.components.v1.iframe("http://127.0.0.1:8051", height=350, scrolling=False)
-
-        # 2. Add a negative margin to pull the second one up (Optional hack)
         st.markdown('<div style="margin-top: -200px;"></div>', unsafe_allow_html=True)
-
         st.components.v1.iframe("http://127.0.0.1:8050", height=350, scrolling=False)
 
 with row2_col1:
@@ -61,7 +60,7 @@ with row2_col0:
         st.components.v1.iframe("http://127.0.0.1:8055", height=350, scrolling=False)
         st.markdown('<div style="margin-top: -200px;"></div>', unsafe_allow_html=True)
 
-# Place this CSS at the top of your script (not inside the loop)
+
 st.markdown("""
     <style>
     /* This targets the spacing between elements inside containers */
